@@ -87,22 +87,22 @@ public class Card {
     /*
      * EFFECTS: returns string representation of condition based on standard PSA grading
      */
-    private String getConditionAsString() {
+    public String getConditionAsString() {
         if (condition == 10) {
             return "Gem Mint";
-        } else if (condition > 9) {
+        } else if (condition >= 9) {
             return "Mint";
-        } else if (condition > 7) {
+        } else if (condition >= 7) {
             return "Near Mint";
-        } else if (condition > 5) {
+        } else if (condition >= 5) {
             return "Excellent";
-        } else if (condition > 3) {
+        } else if (condition >= 3) {
             return "Very Good";
-        } else if (condition > 2) {
+        } else if (condition >= 2) {
             return "Good";
-        } else if (condition > 1) {
+        } else if (condition >= 1) {
             return "Poor";
-        } else if (condition > 0) {
+        } else if (condition >= 0) {
             return "Authentic Only";
         }
         return "Ungraded";

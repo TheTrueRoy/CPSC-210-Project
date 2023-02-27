@@ -80,6 +80,14 @@ class DeckTest {
         assertEquals("smol bean", testDeck.getCards().get(0).getCardName());
         assertEquals("big bean", testDeck.getCards().get(1).getCardName());
         assertEquals("bean", testDeck.getCards().get(2).getCardName());
+        testDeck.sort("token", "d");
+        assertEquals("smol bean", testDeck.getCards().get(0).getCardName());
+        assertEquals("big bean", testDeck.getCards().get(1).getCardName());
+        assertEquals("bean", testDeck.getCards().get(2).getCardName());
+        testDeck.sort("token", "a");
+        assertEquals("smol bean", testDeck.getCards().get(0).getCardName());
+        assertEquals("big bean", testDeck.getCards().get(1).getCardName());
+        assertEquals("bean", testDeck.getCards().get(2).getCardName());
     }
 
     @Test

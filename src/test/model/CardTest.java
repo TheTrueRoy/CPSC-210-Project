@@ -31,6 +31,34 @@ class CardTest {
     }
 
     @Test
+    void testGetConditionAsString() {
+        assertEquals(testFilledCard.getConditionAsString(), "Gem Mint");
+        testFilledCard = new Card("bean", "Rare", 9, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Mint");
+        testFilledCard = new Card("bean", "Rare", 7, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Near Mint");
+        testFilledCard = new Card("bean", "Rare", 5, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Excellent");
+        testFilledCard = new Card("bean", "Rare", 3, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Very Good");
+        testFilledCard = new Card("bean", "Rare", 2, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Good");
+        testFilledCard = new Card("bean", "Rare", 1, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Poor");
+        testFilledCard = new Card("bean", "Rare", 0, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Authentic Only");
+        testFilledCard = new Card("bean", "Rare", -1, 2, "Food");
+        assertEquals(testFilledCard.getConditionAsString(), "Ungraded");
+    }
+
+    @Test
+    void testSetCondition() {
+        assertEquals(10, testFilledCard.getCondition());
+        testFilledCard.setCondition(8);
+        assertEquals(8, testFilledCard.getCondition());
+    }
+
+    @Test
     void testToString() {
         assertEquals("A Common  (0 cost Token card in Ungraded condition)", testCard.toString());
         assertEquals("A Uncommon bean (2 cost Food card in Gem Mint condition)", testFilledCard.toString());
@@ -42,6 +70,8 @@ class CardTest {
     void testGetRarityAsInt() {
         assertEquals(testCard.getRarityAsInt(), 0);
         assertEquals(testFilledCard.getRarityAsInt(), 1);
+        testFilledCard = new Card("bean", "Rare", 10, 2, "Food");
+        assertEquals(testFilledCard.getRarityAsInt(), 2);
     }
 
 }
