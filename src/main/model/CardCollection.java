@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CardCollection implements Writable {
     private String name;
     private ArrayList<Deck> decks;
-    private Deck allCards;
+    private final Deck allCards;
 
     /*
      * EFFECTS: name set to name, list of decks is set to an empty ArrayList of decks; allCards is set to an empty deck
@@ -18,15 +18,6 @@ public class CardCollection implements Writable {
         this.name = name;
         decks = new ArrayList<>();
         allCards = new Deck("all");
-    }
-
-    /*
-     * EFFECTS: name set to name, list of decks is set to decks; list of all cards is set to a given deck allCards
-     */
-    public CardCollection(String name, ArrayList<Deck> decks, Deck allCards) {
-        this.name = name;
-        this.decks = decks;
-        this.allCards = allCards;
     }
 
     @Override
@@ -70,10 +61,6 @@ public class CardCollection implements Writable {
 
     public Deck getAllCards() {
         return allCards;
-    }
-
-    public void setAllCards(Deck allCards) {
-        this.allCards = allCards;
     }
 
     public void addCard(Card card) {
