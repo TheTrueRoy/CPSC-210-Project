@@ -1,0 +1,51 @@
+{
+    "cards": [
+        {
+            "condition": 5,
+            "manacost": 6,
+            "name": "Bean",
+            "cardtype": "Food",
+            "rarity": "Uncommon"
+        },
+        {
+            "condition": 5.5,
+            "manacost": 8,
+            "name": "Big Bean",
+            "cardtype": "Food",
+            "rarity": "Rare"
+        },
+        {
+            "condition": 8,
+            "manacost": 6,
+            "name": "Hammer",
+            "cardtype": "Weapon",
+            "rarity": "Common"
+        }
+    ],
+    "name": "My Collection",
+    "decks": [
+        {
+            "cards": [],
+            "name": "Empty"
+        },
+        {
+            "cards": [
+                {
+                    "condition": 5,
+                    "manacost": 6,
+                    "name": "Bean",
+                    "cardtype": "Food",
+                    "rarity": "Uncommon"
+                },
+                {
+                    "condition": 5.5,
+                    "manacost": 8,
+                    "name": "Big Bean",
+                    "cardtype": "Food",
+                    "rarity": "Rare"
+                }
+            ],
+            "name": "Beans"
+        }
+    ]
+}

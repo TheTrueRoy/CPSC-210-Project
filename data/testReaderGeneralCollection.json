@@ -1,4 +1,5 @@
 {
+    "name": "My Collection",
     "cards": [
         {
             "condition": 5,
@@ -29,7 +30,6 @@
             "rarity": "Common"
         }
     ],
-    "name": "Save",
     "decks": [
         {
             "cards": [{

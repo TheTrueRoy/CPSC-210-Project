@@ -87,4 +87,12 @@ public class CardCollection implements Writable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int cardCount() {
+        return allCards.getCards().size();
+    }
 }
