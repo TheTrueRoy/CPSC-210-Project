@@ -204,7 +204,7 @@ public class CardApp {
         try {
             mana = Integer.parseInt(scan.next());
         } catch (Exception e) {
-            System.out.println("Condition undefined, try again.");
+            System.out.println("Mana cost undefined, try again.");
             return pullMana();
         }
         return mana;
@@ -284,10 +284,10 @@ public class CardApp {
     // MODIFIES: this
     // EFFECTS: processes user input for the deck menu
     private void processDeckOptions() {
-        System.out.print("> ");
         String input = scan.next().toLowerCase();
         if (input.equals("list")) {
             System.out.print(listDecks());
+            return;
         }
         System.out.print("Enter Deck Name: ");
         String name = capitalizeFirst(scan.next());
