@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardCollectionTest {
@@ -11,7 +13,7 @@ public class CardCollectionTest {
 
     @BeforeEach
     void runBefore() {
-        testCollection = new CardCollection("Sandwich");
+        testCollection = new CardCollection("sandwich");
     }
 
     @Test
@@ -24,7 +26,9 @@ public class CardCollectionTest {
     @Test
     void testSetDecks() {
         assertEquals(0,testCollection.getDecks().size());
-        testCollection.addDeck(new Deck("Sponge"));
+        ArrayList<Deck> decks = new ArrayList<>();
+        decks.add(new Deck("Sponge"));
+        testCollection.setDecks(decks);
         assertEquals("Sponge",testCollection.getDecks().get(0).getDeckName());
     }
 

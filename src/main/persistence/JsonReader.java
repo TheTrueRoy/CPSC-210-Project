@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
+// Modelled after the JsonReader class from the provided JsonSerializationDemo
 // Represents a reader that reads collection from JSON data stored in file
 public class JsonReader {
     private final String source;
@@ -21,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads collection from file and returns it;
     // throws IOException if an error occurs reading data from file
     public CardCollection read() throws IOException {
         String jsonData = readFile(source);
