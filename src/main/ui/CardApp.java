@@ -1,16 +1,26 @@
 package ui;
 
 import model.Card;
+import model.CardCollection;
 import model.Deck;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 // Card Assistant Application
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CardApp {
+    private static final String JSON_FOLDER = "./data/cardcollection.json";
+
+    private CardCollection cc;
     private ArrayList<Deck> decks;
     private Deck allCards;
     private Scanner scan;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: starts the card application
     public CardApp() {
@@ -21,10 +31,48 @@ public class CardApp {
     // MODIFIES: this
     // EFFECTS: initializes decks, the card collection, and the scanner
     private void init() {
-        decks = new ArrayList<Deck>();
-        allCards = new Deck("all");
         scan = new Scanner(System.in);
         scan.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_FOLDER);
+        jsonReader = new JsonReader(JSON_FOLDER);
+        cc = new CardCollection("New");
+        System.out.print("Load previous save? (y/n): ");
+        if (scan.next().equals("y")) {
+            loadOption();
+        } else {
+            decks = cc.getDecks();
+            allCards = cc.getAllCards();
+        }
+        runApp();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads new card collection from json
+    private void loadOption() {
+        try {
+            cc = jsonReader.read();
+            decks = cc.getDecks();
+            allCards = cc.getAllCards();
+            System.out.println("Successfully loaded file from: " + JSON_FOLDER);
+        } catch (IOException e) {
+            decks = cc.getDecks();
+            allCards = cc.getAllCards();
+            System.out.println("Unable to read from file: " + JSON_FOLDER);
+        }
+    }
+
+    // EFFECTS: saves the card collection to json
+    private void saveOption() {
+        try {
+            System.out.print("Name Save File: ");
+            cc.setName(scan.next());
+            jsonWriter.open();
+            jsonWriter.write(cc);
+            jsonWriter.close();
+            System.out.println("Successfully saved file to: " + JSON_FOLDER);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_FOLDER);
+        }
     }
 
     // MODIFIES: this
@@ -43,6 +91,8 @@ public class CardApp {
     private void showInstructions() {
         System.out.println("Type \"deck\" for deck options");
         System.out.println("Type \"card\" for card options");
+        System.out.println("Type \"load\" to load saved collection");
+        System.out.println("Type \"save\" to save current collection");
         System.out.println("Type \"quit\" to exit");
     }
 
@@ -59,6 +109,10 @@ public class CardApp {
         } else if (input.equals("deck")) {
             displayDeckOptions();
             processDeckOptions();
+        } else if (input.equals("load")) {
+            loadOption();
+        } else if (input.equals("save")) {
+            saveOption();
         } else {
             System.out.println("Command not understood, please check your spelling and try again.");
         }
@@ -79,16 +133,22 @@ public class CardApp {
     private void processCardOptions() {
         System.out.print("> ");
         String input = scan.next().toLowerCase();
-        if (input.equals("add")) {
-            System.out.println(addCard());
-        } else if (input.equals("remove")) {
-            System.out.println(removeCard());
-        } else if (input.equals("list")) {
-            System.out.print(listCards());
-        } else if (input.equals("info")) {
-            System.out.println(cardInfo(allCards));
-        } else {
-            System.out.println("You have been returned to the main menu.");
+        switch (input) {
+            case "add":
+                System.out.println(addCard());
+                break;
+            case "remove":
+                System.out.println(removeCard());
+                break;
+            case "list":
+                System.out.print(listCards());
+                break;
+            case "info":
+                System.out.println(cardInfo(allCards));
+                break;
+            default:
+                System.out.println("You have been returned to the main menu.");
+                break;
         }
     }
 
@@ -124,9 +184,9 @@ public class CardApp {
     // MODIFIES: this
     // EFFECTS: returns condition if the user inputs a valid value, or returns the value of a repeated query if invalid
     private double pullCondition() {
-        double condition = 0;
+        double condition;
         try {
-            condition = Double.valueOf(scan.next());
+            condition = Double.parseDouble(scan.next());
         } catch (Exception e) {
             condition = -2;
         }
@@ -140,9 +200,9 @@ public class CardApp {
     // MODIFIES: this
     // EFFECTS: returns mana cost if the user inputs a valid value, or returns the value of a repeated query if invalid
     private int pullMana() {
-        int mana = 0;
+        int mana;
         try {
-            mana = Integer.valueOf(scan.next());
+            mana = Integer.parseInt(scan.next());
         } catch (Exception e) {
             System.out.println("Condition undefined, try again.");
             return pullMana();
@@ -168,24 +228,24 @@ public class CardApp {
 
     // EFFECTS: returns a string representation of all cards in collection there is >= 1, else returns a failure message
     private String listCards() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         int index = 0;
         for (Card c : allCards.getCards()) {
-            output += index + ") " + c.getCardName() + "\n";
+            output.append(index).append(") ").append(c.getCardName()).append("\n");
             index++;
         }
         if (index == 0) {
             return "Sorry, you don't seem to have any cards.\n";
         }
-        return output;
+        return output.toString();
     }
 
     // EFFECTS: returns information about a card in a given deck, or a failure message if no such index exists
     private String cardInfo(Deck d) {
         System.out.print("Enter Card Index: ");
-        int index = 0;
+        int index;
         try {
-            index = Integer.valueOf(scan.next());
+            index = Integer.parseInt(scan.next());
         } catch (Exception e) {
             return "Invalid Index";
         }
@@ -279,31 +339,28 @@ public class CardApp {
 
     // EFFECTS: produces a string representation of all decks currently listed in decks, or a failure message if none
     private String listDecks() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         int index = 0;
         for (Deck d : decks) {
-            output += index + ") " + d.getDeckName() + "\n";
+            output.append(index).append(") ").append(d.getDeckName()).append("\n");
             index++;
         }
         if (index == 0) {
             return "Sorry, you don't seem to have any decks.\n";
         }
-        return output;
+        return output.toString();
     }
 
     // MODIFIES: this
     // EFFECTS: sorts a given deck the produces a success message, or a failure message if no deck was null
     private String sortDeck(Deck deck) {
-        System.out.print("Enter Deck Name: ");
-        String name = capitalizeFirst(scan.next());
-        System.out.print("Select Comparator (name, rarity, condition): ");
-        String comparator = scan.next().toLowerCase();
-        System.out.print("Select Order (d for descending, a for ascending): ");
-        String direction = scan.next().toLowerCase();
-
         if (deck != null) {
+            System.out.print("Select Comparator (name, rarity, condition): ");
+            String comparator = scan.next().toLowerCase();
+            System.out.print("Select Order (d for descending, a for ascending): ");
+            String direction = scan.next().toLowerCase();
             deck.sort(comparator, direction);
-            return name + " was successfully sorted\n" + deck.listContents();
+            return "Deck was successfully sorted\n" + deck.listContents();
         }
         return "Deck could not be located\n";
     }

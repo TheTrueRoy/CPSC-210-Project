@@ -1,0 +1,58 @@
+{
+    "cards": [
+        {
+            "condition": 5,
+            "manacost": 6,
+            "name": "Bean",
+            "cardtype": "Food",
+            "rarity": "Uncommon"
+        },
+        {
+            "condition": 5.5,
+            "manacost": 8,
+            "name": "Big bean",
+            "cardtype": "Food",
+            "rarity": "Rare"
+        },
+        {
+            "condition": 4.5,
+            "manacost": 10,
+            "name": "King bean",
+            "cardtype": "Creature",
+            "rarity": "Mythic"
+        }
+    ],
+    "name": "Sandwich",
+    "decks": [
+        {
+            "cards": [],
+            "name": "Create"
+        },
+        {
+            "cards": [
+                {
+                    "condition": 5.5,
+                    "manacost": 8,
+                    "name": "Big bean",
+                    "cardtype": "Food",
+                    "rarity": "Rare"
+                },
+                {
+                    "condition": 4.5,
+                    "manacost": 10,
+                    "name": "King bean",
+                    "cardtype": "Creature",
+                    "rarity": "Mythic"
+                },
+                {
+                    "condition": 5,
+                    "manacost": 6,
+                    "name": "Bean",
+                    "cardtype": "Food",
+                    "rarity": "Uncommon"
+                }
+            ],
+            "name": "Beans"
+        }
+    ]
+}

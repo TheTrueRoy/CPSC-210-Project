@@ -1,14 +1,17 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 
 // Represents a trading card, having a name, rarity, condition, mana cost, and type
-public class Card {
-    private String cardName;  // name of the card, multiple cards can have one name
-    private String rarity;    // rarity of the card according to its labelling
+public class Card implements Writable {
+    private final String cardName;  // name of the card, multiple cards can have one name
+    private final String rarity;    // rarity of the card according to its labelling
     private double condition; // condition of the card according to PSA grading standards
-    private int manaCost;     // mana cost in the upper right corner of the card
-    private String cardType;  // type of card (instant, artifact, creature, land, enchantment, etc)
+    private final int manaCost;     // mana cost in the upper right corner of the card
+    private final String cardType;  // type of card (instant, artifact, creature, land, enchantment, etc)
 
     /*
      * EFFECTS: name of card is set to ""; rarity is set to "Common";
@@ -42,12 +45,13 @@ public class Card {
      * EFFECTS: returns numerical ranking of rarity with higher numbers being more rare.
      */
     private int rarityStringToInt(String rarity) {
-        if (rarity.equals("Mythic")) {
-            return 3;
-        } else if (rarity.equals("Rare")) {
-            return 2;
-        } else if (rarity.equals("Uncommon")) {
-            return 1;
+        switch (rarity) {
+            case "Mythic":
+                return 3;
+            case "Rare":
+                return 2;
+            case "Uncommon":
+                return 1;
         }
         return 0;
     }
@@ -59,6 +63,17 @@ public class Card {
     public String toString() {
         String briefInfo = "A " + rarity + " " + cardName;
         return briefInfo + " (" + manaCost + " cost " + cardType + " card in " + getConditionAsString() + " condition)";
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", cardName);
+        json.put("rarity", rarity);
+        json.put("condition", condition);
+        json.put("manacost", manaCost);
+        json.put("cardtype", cardType);
+        return json;
     }
 
     /*

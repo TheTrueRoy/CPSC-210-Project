@@ -1,12 +1,16 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
 // Represents a deck with a name and an arbitrary number of cards within
-public class Deck {
-    private String deckName;       // name of the deck
-    private ArrayList<Card> cards; // list of cards within
+public class Deck implements Writable {
+    private final String deckName;       // name of the deck
+    private final ArrayList<Card> cards; // list of cards within
 
     /*
      * EFFECTS: the name of the deck is set to deckName;
@@ -14,7 +18,7 @@ public class Deck {
      */
     public Deck(String deckName) {
         this.deckName = deckName;
-        this.cards = new ArrayList<Card>();
+        this.cards = new ArrayList<>();
     }
 
     public String getDeckName() {
@@ -62,27 +66,27 @@ public class Deck {
      *          a direction of a will sort in ascending order; d will sort in descending order
      */
     public void sort(String comparator, String direction) {
-        cards.sort(new Comparator<Card>() {
-            @Override
-            public int compare(Card o1, Card o2) {
-                if (direction.equals("d")) {
-                    Card temp = o1;
-                    o1 = o2;
-                    o2 = temp;
-                }
-                if (comparator.equals("name")) {
+        cards.sort((o1, o2) -> {
+            if (direction.equals("d")) {
+                Card temp = o1;
+                o1 = o2;
+                o2 = temp;
+            }
+            switch (comparator) {
+                case "name":
                     return o1.getCardName().compareToIgnoreCase(o2.getCardName());
-                } else if (comparator.equals("rarity")) {
+                case "rarity": {
                     double c1 = o1.getRarityAsInt();
                     double c2 = o2.getRarityAsInt();
-                    return c1 == c2 ? 0 : c1 > c2 ? 1 : -1;
-                } else if (comparator.equals("condition")) {
+                    return Double.compare(c1, c2);
+                }
+                case "condition": {
                     double c1 = o1.getCondition();
                     double c2 = o2.getCondition();
-                    return c1 == c2 ? 0 : c1 > c2 ? 1 : -1;
+                    return Double.compare(c1, c2);
                 }
-                return 0;
             }
+            return 0;
         });
     }
 
@@ -90,16 +94,16 @@ public class Deck {
      * EFFECTS: returns a string representation of the cards in the list containing their order and names
      */
     public String listContents() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         int index = 0;
         for (Card c : getCards()) {
-            output += index + ") " + c.getCardName() + "\n";
+            output.append(index).append(") ").append(c.getCardName()).append("\n");
             index++;
         }
         if (index == 0) {
             return "Sorry, this deck seems to be empty.\n";
         }
-        return output;
+        return output.toString();
     }
 
     /*
@@ -107,12 +111,31 @@ public class Deck {
      * EFFECTS: returns the info for the card at a given index in the deck
      */
     public String cardInfo(int index) {
-        Card c = new Card();
+        Card c;
         try {
             c = getCards().get(index);
         } catch (Exception e) {
             return "Card not found";
         }
         return c.toString();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", deckName);
+        json.put("cards", cardsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns cards in this deck as a JSON array
+    private JSONArray cardsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Card c : cards) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 }

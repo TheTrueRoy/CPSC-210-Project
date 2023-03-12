@@ -21,3 +21,6 @@ User stories:
 - As a user, I want to see which cards in my collection are the most used in my decks and which are the least used
 - As a user, I want to mark/edit a preexisting card with its current condition or location
 - As a user, I want a mechanism to ensure my deck follows my chosen ruleset
+
+- As a user, I want to have the option to save the entire state of the application to file
+- As a user, I want the option to reload that state from file and resume exactly where I left off at some earlier time
