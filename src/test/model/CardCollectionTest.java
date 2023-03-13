@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Tests methods found in the CardCollection class
 public class CardCollectionTest {
 
     private CardCollection testCollection;

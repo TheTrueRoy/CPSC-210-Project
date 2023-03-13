@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 // Modelled after the JsonWriterTest class from the provided JsonSerializationDemo
-
+// Tests methods found in the JsonWriter class
 class JsonWriterTest extends JsonTest {
 
     @Test

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// Tests methods found in the Card class
 class CardTest {
     private Card testCard;
     private Card testFilledCard;

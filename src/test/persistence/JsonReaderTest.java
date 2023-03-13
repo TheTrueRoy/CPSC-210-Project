@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 // Modelled after the JsonReaderTest class from the provided JsonSerializationDemo
-
+// Tests methods found in the JsonReader class
 class JsonReaderTest extends JsonTest {
 
     @Test
