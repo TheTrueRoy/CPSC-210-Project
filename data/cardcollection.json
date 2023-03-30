@@ -10,16 +10,9 @@
         {
             "condition": 5.5,
             "manacost": 8,
-            "name": "Big bean",
+            "name": "Big Bean",
             "cardtype": "Food",
             "rarity": "Rare"
-        },
-        {
-            "condition": 4.5,
-            "manacost": 10,
-            "name": "King bean",
-            "cardtype": "Creature",
-            "rarity": "Mythic"
         },
         {
             "condition": 8,
@@ -27,45 +20,65 @@
             "name": "Hammer",
             "cardtype": "Weapon",
             "rarity": "Common"
+        },
+        {
+            "condition": 10,
+            "manacost": 5,
+            "name": "Python",
+            "cardtype": "Snake",
+            "rarity": "Common"
         }
     ],
-    "name": "Save",
+    "name": "My Collection",
     "decks": [
         {
-            "cards": [{
-                "condition": 8,
-                "manacost": 6,
-                "name": "Hammer",
-                "cardtype": "Weapon",
-                "rarity": "Common"
-            }],
-            "name": "Create"
+            "cards": [],
+            "name": "Empty"
         },
         {
             "cards": [
-                {
-                    "condition": 5.5,
-                    "manacost": 8,
-                    "name": "Big bean",
-                    "cardtype": "Food",
-                    "rarity": "Rare"
-                },
-                {
-                    "condition": 4.5,
-                    "manacost": 10,
-                    "name": "King bean",
-                    "cardtype": "Creature",
-                    "rarity": "Mythic"
-                },
                 {
                     "condition": 5,
                     "manacost": 6,
                     "name": "Bean",
                     "cardtype": "Food",
                     "rarity": "Uncommon"
+                },
+                {
+                    "condition": 5.5,
+                    "manacost": 8,
+                    "name": "Big Bean",
+                    "cardtype": "Food",
+                    "rarity": "Rare"
                 }
             ],
             "name": "Beans"
+        },
+        {
+            "cards": [
+                {
+                    "condition": 8,
+                    "manacost": 6,
+                    "name": "Hammer",
+                    "cardtype": "Weapon",
+                    "rarity": "Mythic"
+                },
+                {
+                    "condition": 10,
+                    "manacost": 5,
+                    "name": "Python",
+                    "cardtype": "Snake",
+                    "rarity": "Common"
+                },
+                {
+                    "condition": 5.5,
+                    "manacost": 8,
+                    "name": "Big Bean",
+                    "cardtype": "Food",
+                    "rarity": "Rare"
+                }
+            ],
+            "name": "snake"
         }
     ]
 }

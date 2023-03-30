@@ -24,3 +24,39 @@ User stories:
 
 - As a user, I want to have the option to save the entire state of the application to file
 - As a user, I want the option to reload that state from file and resume exactly where I left off at some earlier time
+
+# Instructions for Grader
+
+- You can reload the state of my application by clicking the load button at the bottom of the viewport.
+- You can save the state of my application by clicking the save button at the bottom of the viewport.
+- You can locate my visual component by clicking on a card and looking at its details. The visual component is
+  the two squares displayed next to the name. They change color based on rarity and condition respectively.
+- You can generate the first required action related to adding Xs to a Y by opening a deck and clicking either
+  of the sort buttons (labelled A->Z and Z->A respectively). This sorts the deck by name.
+- You can generate the second required action related to adding Xs to a Y by opening a deck and clicking on a
+  card within (From the upper right). Then click the remove card from deck button. It should remove the card from
+  the deck.
+
+## For more clear instructions on navigating the UI, here's an example you could follow to get a feel for it
+
+- First, you'll want to load the data stored in file by clicking the large "Load" button at the bottom of the frame
+- Next, click on the deck named "Beans" and then the card labelled as "Big Bean" in the upper right corner of the
+  viewport (not to be confused with the bottom middle instance).
+- This should display information and actions in the bottom right corner of the view port relating to the card,
+  including two visual indicators for the condition and rarity. Scrolling through the other cards in the deck,
+  you can see how they change colors between cards. The first shows rarity and will be one of four colors. The second
+  shows condition and will appear as some color between pink and black with pink representing better condition.
+- Now, with the big bean selected once more (or any other card, but for the sake of detail), you can now click the
+  "remove from deck" button and watch as it disappears.
+- Now, save the deck in this state.
+- Click on Python in the bottom middle section of the page without deselecting the deck.
+- In the bottom right corner again, click the "add to deck" button and watch as it appears. Now, if you click the
+  load button once more, it should remove the python card from the deck.
+- This functionality can be verified by closing and reopening the app before loading once more.
+- Now, open the snake deck by clicking on the button in the upper middle labelled as snake.
+- Try out both of the sorting buttons by clicking either and watching as the deck reorients itself (or not,
+  if it's already sorted)
+- If you want to create a new deck or card to test something, simply fill in all the fields in the specified 
+  menu and click the button. Deck creator wants a string. Card creator wants an arbitrary string for name, one of
+  "Common", "Uncommon", "Rare", "Mythic" for rarity, a double between 0 and 10 for condition, a positive integer or 0
+  mana cost, and another arbitrary string for card type. (None of which are case-sensitive).
