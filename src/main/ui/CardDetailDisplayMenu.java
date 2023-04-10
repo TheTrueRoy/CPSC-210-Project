@@ -5,12 +5,12 @@ import model.Deck;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // A menu designed to display the relevant data of a card as well as buttons for deck manipulation (add/remove cards)
 public class CardDetailDisplayMenu extends JPanel {
     private final CardAppGraphical cardAppGraphical;
+    private ConditionPanel conditionPanel;
+    private RarityPanel rarityPanel;
 
     // EFFECTS: Constructs the CardDetailDisplayMenu
     public CardDetailDisplayMenu(Card card, CardAppGraphical cardAppGraphical) {
@@ -77,8 +77,10 @@ public class CardDetailDisplayMenu extends JPanel {
         JPanel output = new JPanel();
         output.setLayout(new FlowLayout());
         output.add(new JLabel(card.getCardName()), BorderLayout.NORTH);
-        output.add(new RarityPanel(card.getRarity()));
-        output.add(new ConditionPanel(card.getCondition()));
+        rarityPanel = new RarityPanel(card.getRarity());
+        output.add(rarityPanel);
+        conditionPanel = new ConditionPanel(card.getCondition());
+        output.add(conditionPanel);
         output.add(new JLabel(Integer.toString(card.getManaCost())));
         output.add(new JLabel(card.getCardType()));
         return output;

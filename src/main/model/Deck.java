@@ -19,6 +19,7 @@ public class Deck implements Writable {
     public Deck(String deckName) {
         this.deckName = deckName;
         this.cards = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event(deckName + " was created"));
     }
 
     public String getDeckName() {
@@ -30,19 +31,22 @@ public class Deck implements Writable {
     }
 
     /*
-     * MODIFIES: this
+     * MODIFIES: this, EventLog
      * EFFECTS: adds card to deck
      */
     public void add(Card c) {
         cards.add(c);
+        EventLog.getInstance().logEvent(new Event("Added " + c.getCardName() + " to " + deckName));
     }
 
     /*
-     * MODIFIES: this
+     * MODIFIES: this, EventLog
      * EFFECTS: removes card from deck
      */
     public void remove(Card c) {
-        cards.remove(c);
+        if (cards.remove(c)) {
+            EventLog.getInstance().logEvent(new Event("Removed " + c.getCardName() + " from " + deckName));
+        }
     }
 
     /*
@@ -53,6 +57,7 @@ public class Deck implements Writable {
         for (Card c : cards) {
             if (c.getCardName().equals(s)) {
                 cards.remove(c);
+                EventLog.getInstance().logEvent(new Event("Removed " + s + " from " + deckName));
                 return c;
             }
         }
@@ -88,6 +93,7 @@ public class Deck implements Writable {
             }
             return 0;
         });
+        EventLog.getInstance().logEvent(new Event(deckName + " was sorted according to " + comparator));
     }
 
     /*
@@ -103,6 +109,7 @@ public class Deck implements Writable {
         if (index == 0) {
             return "Sorry, this deck seems to be empty.\n";
         }
+        EventLog.getInstance().logEvent(new Event(deckName + " was shown as a text list"));
         return output.toString();
     }
 
@@ -117,6 +124,7 @@ public class Deck implements Writable {
         } catch (Exception e) {
             return "Card not found";
         }
+        EventLog.getInstance().logEvent(new Event(c + " was shown as a text description"));
         return c.toString();
     }
 

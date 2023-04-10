@@ -102,15 +102,6 @@ class DeckTest {
     }
 
     @Test
-    void testListContents() {
-        assertEquals("Sorry, this deck seems to be empty.\n", testDeck.listContents());
-        testDeck.add(new Card("smol bean","Uncommon",4,1,"Food"));
-        assertEquals("0) smol bean\n", testDeck.listContents());
-        testDeck.add(new Card("big bean","Mythic",4.5,7,"Food"));
-        assertEquals("0) smol bean\n1) big bean\n", testDeck.listContents());
-    }
-
-    @Test
     void testCardInfo() {
         assertEquals("Card not found", testDeck.cardInfo(0));
         Card smolBean = new Card("smol bean","Uncommon",4,1,"Food");

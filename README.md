@@ -60,3 +60,32 @@ User stories:
   menu and click the button. Deck creator wants a string. Card creator wants an arbitrary string for name, one of
   "Common", "Uncommon", "Rare", "Mythic" for rarity, a double between 0 and 10 for condition, a positive integer or 0
   mana cost, and another arbitrary string for card type. (None of which are case-sensitive).
+
+# Phase 4: Task 2
+
+- Mon Apr 10 15:09:24 PDT 2023
+- Testdeck was created
+- Mon Apr 10 15:09:53 PDT 2023
+- Testcard was created
+- Mon Apr 10 15:09:53 PDT 2023
+- Added Testcard to all
+- Mon Apr 10 15:09:58 PDT 2023
+- Added Testcard to Testdeck
+- Mon Apr 10 15:10:00 PDT 2023
+- Testdeck was sorted according to name
+- Mon Apr 10 15:10:03 PDT 2023
+- Removed Testcard from Testdeck
+
+# Phase 4: Task 3
+
+After seeing the design reflected in my UML diagram, I believe it would have been worthwhile to spend my time
+adding in more abstract classes and interfaces to save time on the repetitive GUI elements since it has become
+more apparent to me just how much those classes truly had in common in terms of their functionality.
+More importantly though, I think it would have been better for me to work those classes into the CardAppGraphical
+class itself. It was a poor design decision on my part to have them all need to inherit the class that should supposedly
+have been parenting them. It definitely works, but it makes the references a lot harder to follow than was necessary.
+If I had more time to work on the project I would focus on reworking the definition of the CardCollection to eliminate
+duplicate instances of the list of decks and cards, and I would also refactor the GUI classes into the CardAppGraphical
+class as there is not a real valid reason I can think of to have placed them outside in that way. If I still had extra
+time I would then rework CardAppGraphical to a singleton design since I know there should never be extra instances and I
+believe it would improve the code's legibility.

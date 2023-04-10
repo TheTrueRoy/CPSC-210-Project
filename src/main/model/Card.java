@@ -24,6 +24,7 @@ public class Card implements Writable {
         this.condition = -1;
         this.manaCost = 0;
         this.cardType = "Token";
+        EventLog.getInstance().logEvent(new Event("New generic card was created"));
     }
 
     /*
@@ -39,6 +40,7 @@ public class Card implements Writable {
         this.condition = condition;
         this.manaCost = manaCost;
         this.cardType = cardType;
+        EventLog.getInstance().logEvent(new Event(cardName + " was created"));
     }
 
     /*
@@ -77,29 +79,6 @@ public class Card implements Writable {
     }
 
     /*
-     * EFFECTS: returns numerical representation of rarity
-     */
-    public int getRarityAsInt() {
-        return rarityStringToInt(rarity);
-    }
-
-    public String getRarity() {
-        return rarity;
-    }
-
-    public int getManaCost() {
-        return manaCost;
-    }
-
-    public String getCardType() {
-        return cardType;
-    }
-
-    public void setCondition(double condition) {
-        this.condition = condition;
-    }
-
-    /*
      * EFFECTS: returns string representation of condition based on standard PSA grading
      */
     public String getConditionAsString() {
@@ -121,6 +100,30 @@ public class Card implements Writable {
             return "Authentic Only";
         }
         return "Ungraded";
+    }
+
+    /*
+     * EFFECTS: returns numerical representation of rarity
+     */
+    public int getRarityAsInt() {
+        return rarityStringToInt(rarity);
+    }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public int getManaCost() {
+        return manaCost;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCondition(double condition) {
+        EventLog.getInstance().logEvent(new Event(cardName + "'s condition was changed to " + condition));
+        this.condition = condition;
     }
 
     public String getCardName() {

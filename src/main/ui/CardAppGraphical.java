@@ -3,16 +3,18 @@ package ui;
 import model.Card;
 import model.CardCollection;
 import model.Deck;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 // Card Assistant Application (w/ a GUI)
 public class CardAppGraphical extends JFrame {
@@ -45,6 +47,15 @@ public class CardAppGraphical extends JFrame {
         JPanel interactionMenu = createInteractionMenu();
         add(interactionMenu);
         add(createSaveLoadMenu(), BorderLayout.SOUTH);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Iterator<model.Event> it = EventLog.getInstance().iterator(); it.hasNext(); ) {
+                    Event event = it.next();
+                    System.out.println(event.toString());
+                }
+            }
+        });
         pack();
     }
 

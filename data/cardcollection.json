@@ -27,6 +27,20 @@
             "name": "Python",
             "cardtype": "Snake",
             "rarity": "Common"
+        },
+        {
+            "condition": 6,
+            "manacost": 3,
+            "name": "Apple",
+            "cardtype": "Food",
+            "rarity": "Common"
+        },
+        {
+            "condition": 6,
+            "manacost": 10,
+            "name": "Testcard",
+            "cardtype": "Test",
+            "rarity": "Mythic"
         }
     ],
     "name": "My Collection",
@@ -38,31 +52,24 @@
         {
             "cards": [
                 {
-                    "condition": 5,
-                    "manacost": 6,
-                    "name": "Bean",
-                    "cardtype": "Food",
-                    "rarity": "Uncommon"
-                },
-                {
                     "condition": 5.5,
                     "manacost": 8,
                     "name": "Big Bean",
                     "cardtype": "Food",
                     "rarity": "Rare"
+                },
+                {
+                    "condition": 5,
+                    "manacost": 6,
+                    "name": "Bean",
+                    "cardtype": "Food",
+                    "rarity": "Uncommon"
                 }
             ],
             "name": "Beans"
         },
         {
             "cards": [
-                {
-                    "condition": 8,
-                    "manacost": 6,
-                    "name": "Hammer",
-                    "cardtype": "Weapon",
-                    "rarity": "Mythic"
-                },
                 {
                     "condition": 10,
                     "manacost": 5,
@@ -71,14 +78,38 @@
                     "rarity": "Common"
                 },
                 {
+                    "condition": 8,
+                    "manacost": 6,
+                    "name": "Hammer",
+                    "cardtype": "Weapon",
+                    "rarity": "Mythic"
+                },
+                {
                     "condition": 5.5,
                     "manacost": 8,
                     "name": "Big Bean",
                     "cardtype": "Food",
                     "rarity": "Rare"
+                },
+                {
+                    "condition": 6,
+                    "manacost": 3,
+                    "name": "Apple",
+                    "cardtype": "Food",
+                    "rarity": "Common"
                 }
             ],
             "name": "snake"
+        },
+        {
+            "cards": [{
+                "condition": 6,
+                "manacost": 10,
+                "name": "Testcard",
+                "cardtype": "Test",
+                "rarity": "Mythic"
+            }],
+            "name": "TestDeck"
         }
     ]
 }

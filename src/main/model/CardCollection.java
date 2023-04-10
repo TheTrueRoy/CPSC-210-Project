@@ -18,6 +18,7 @@ public class CardCollection implements Writable {
         this.name = name;
         decks = new ArrayList<>();
         allCards = new Deck("all");
+        EventLog.getInstance().logEvent(new Event("The card collection was initialized"));
     }
 
     @Override
@@ -57,6 +58,7 @@ public class CardCollection implements Writable {
 
     public void setDecks(ArrayList<Deck> decks) {
         this.decks = decks;
+        EventLog.getInstance().logEvent(new Event("The card collection's decks were changed to a new list of decks"));
     }
 
     public Deck getAllCards() {
@@ -65,13 +67,16 @@ public class CardCollection implements Writable {
 
     public void addCard(Card card) {
         allCards.add(card);
+        EventLog.getInstance().logEvent(new Event(card.getCardName() + " was added to the collection."));
     }
 
     public void addDeck(Deck deck) {
+        EventLog.getInstance().logEvent(new Event(deck.getDeckName() + " was added to the collection."));
         decks.add(deck);
     }
 
     public void setName(String name) {
+        EventLog.getInstance().logEvent(new Event("The card collection's named was changed to " + name));
         this.name = name;
     }
 
